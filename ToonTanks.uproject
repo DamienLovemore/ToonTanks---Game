@@ -3,10 +3,21 @@
 	"EngineAssociation": "5.1",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "ToonTanks",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"TargetPlatforms": [
 		"Linux",
 		"LinuxArm64",
 		"Mac",
-		"Windows"
+		"Windows",
+		"HoloLens"
 	]
 }
