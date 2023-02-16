@@ -15,6 +15,21 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	//Visible in unity editor, but not editable
+	UPROPERTY(VisibleAnywhere)
+	int32 VisibleAnywhereInt = 12;
+
+	//It is visible and editable in the Unreal Editor
+	UPROPERTY(EditAnywhere)
+	int32 EditAnywhereInt = 22;
+
+	//Can only be visible if it is a instance
+	//(placed in the world)
+	UPROPERTY(VisibleInstanceOnly)
+	int32 VisibleInstanceOnlyInt = 11;
+
+	UPROPERTY(EditAnywhere)
+	float Speed = 400;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
