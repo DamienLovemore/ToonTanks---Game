@@ -16,11 +16,12 @@ public:
 	ABasePawn();
 
 	//Visible in unity editor, but not editable
-	UPROPERTY(VisibleAnywhere)
+	//Allos to get and set variable in Blueprints visual code
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	int32 VisibleAnywhereInt = 12;
 
 	//It is visible and editable in the Unreal Editor
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 EditAnywhereInt = 22;
 
 	//Can only be visible if it is a instance
@@ -28,8 +29,20 @@ public:
 	UPROPERTY(VisibleInstanceOnly)
 	int32 VisibleInstanceOnlyInt = 11;
 
-	UPROPERTY(EditAnywhere)
+	//Can only be visible in the defaults editor
+	//(Double-click BP on Content Drawer)
+	UPROPERTY(VisibleDefaultsOnly)
+	int32 VisibleDefaultsOnlyInt = 5;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 EditDefaultsOnlyInt = 9;
+
+	UPROPERTY(EditInstanceOnly)
+	int32 EditInstanceOnlyInt = 14;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Speed = 400;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
