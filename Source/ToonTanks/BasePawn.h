@@ -56,13 +56,24 @@ public:
 
 private:
 	//Forward declare a variable to make header file smaller
-	UPROPERTY()	
+	UPROPERTY(VisibleAnywhere, Category = "Pawn Structure", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))	
 	class UCapsuleComponent* CapsuleComp;
 	//StaticMesh are used to visually render something
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Pawn Structure", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Pawn Structure", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* TurretMesh;
-	UPROPERTY()
+
+	UPROPERTY(VisibleAnywhere, Category = "Projectiles", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
+
+	//Allows Blueprint access from private variables.
+	//(Still encapsulated in the C++ side)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
+	int32 PrivateVisibleAnywhereInt = 21;
+
+	//Category is used to put variables into their own separate categories
+	//(The \ is used to escape characters)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,  Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
+	int32 PrivateEditAnywhereInt = 21;
 };
