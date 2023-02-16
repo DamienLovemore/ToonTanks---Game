@@ -19,9 +19,9 @@ public:
 
 private:
 	//Keeps the object and the camera connected, separeted by a distance
-	UPROPERTY(VisibleAnywhere, Category = "Camera Control", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
 	class USpringArmComponent* SpringArm;
 	//The camera that renders the player view
-	UPROPERTY(VisibleAnywhere, Category = "Camera Control", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
 	class UCameraComponent* FollowCamera;
 };
