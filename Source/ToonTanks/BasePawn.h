@@ -26,4 +26,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	//Forward declare a variable to make header file smaller
+	UPROPERTY()	
+	class UCapsuleComponent* CapsuleComp;
 };
