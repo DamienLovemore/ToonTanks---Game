@@ -30,4 +30,11 @@ private:
 	//Forward declare a variable to make header file smaller
 	UPROPERTY()	
 	class UCapsuleComponent* CapsuleComp;
+	//StaticMesh are used to visually render something
+	UPROPERTY()
+	UStaticMeshComponent* BaseMesh;
+	UPROPERTY()
+	UStaticMeshComponent* TurretMesh;
+	UPROPERTY()
+	USceneComponent* ProjectileSpawnPoint;
 };
