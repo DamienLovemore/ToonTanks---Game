@@ -4,12 +4,10 @@
 #include "Tank.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 ATank::ATank()
 {
-    // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-    this->PrimaryActorTick.bCanEverTick = true;
-
     this->SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Camera Connector"));
     this->SpringArm->SetupAttachment(this->RootComponent);
 
@@ -30,13 +28,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 }
 
-// Called every frame
-void ATank::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ATank::Move(float Value)
 {
     //Verify if the user input is being listened
@@ -46,7 +37,12 @@ void ATank::Move(float Value)
     //to all its values.(FVector::ZeroVector also
     //works)
     FVector DeltaLocation = FVector(0.0f);
-    DeltaLocation.X = Value;
+    //Returns the DeltaTime passed in the world of that object
+    float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+    //X is the movement in the front and back
+    //(Multiply by speed and DeltaTime to adjust its movement
+    //speed and make it framerate independet)
+    DeltaLocation.X = Value * this->Speed * DeltaTime;
 
     //Move this character location by the FVector
     //offset, considering its local rotation

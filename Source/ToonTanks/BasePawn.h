@@ -40,9 +40,6 @@ public:
 	UPROPERTY(EditInstanceOnly)
 	int32 EditInstanceOnlyInt = 14;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Speed = 400;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
