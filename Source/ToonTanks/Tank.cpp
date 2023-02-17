@@ -17,6 +17,18 @@ ATank::ATank()
     this->FollowCamera->SetupAttachment(this->SpringArm);
 }
 
+// Called when the game starts or when spawned
+void ATank::BeginPlay()
+{
+    //Because it is a override
+    Super::BeginPlay();
+
+    //Gets the controller system used by the player
+    //to move the pawn (player char) around
+    //Used casting to convert AController to APlayerController
+    this->PlayerControllerRef = Cast<APlayerController>(this->GetController());
+}
+
 //Used to bind functions to access mappings
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

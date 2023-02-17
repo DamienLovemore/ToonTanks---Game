@@ -20,6 +20,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 private:
 	//Keeps the object and the camera connected, separeted by a distance
 	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
@@ -32,6 +36,9 @@ private:
 	float Speed = 489;
 	UPROPERTY(EditAnywhere, Category= "Player Movement")
 	float TurnRate = 90;
+
+	//The controller is what posses the pawn (player)
+	APlayerController* PlayerControllerRef;
 
 	void Move(float Value);
 	void Turn(float Value);

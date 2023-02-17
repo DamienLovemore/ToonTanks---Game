@@ -39,14 +39,6 @@ public:
 
 	UPROPERTY(EditInstanceOnly)
 	int32 EditInstanceOnlyInt = 14;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	
 private:
 	//Forward declare a variable to make header file smaller
