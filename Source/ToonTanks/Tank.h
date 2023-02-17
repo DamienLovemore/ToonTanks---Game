@@ -20,6 +20,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 private:
 	//Keeps the object and the camera connected, separeted by a distance
 	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
