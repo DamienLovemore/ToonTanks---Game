@@ -26,6 +26,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     //Bind a axis mapping of that name to our function to handle
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+    PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
 void ATank::Move(float Value)
@@ -46,5 +47,24 @@ void ATank::Move(float Value)
 
     //Move this character location by the FVector
     //offset, considering its local rotation
-    this->AddActorLocalOffset(DeltaLocation);    
+    //If Sweeping is on it stops moving if it would pass through an object.
+    //Generate overlap must be enabled, and collisions to block what it
+    //should not pass through.
+    this->AddActorLocalOffset(DeltaLocation, true);    
+}
+
+void ATank::Turn(float Value)
+{
+    //FRotation is similar to FVector. But instead
+    //of representing location, it represents rotation
+    //Pitch - Rotation in the Y axis
+    //Yaw - Rotation in the Z axis
+    //Roll - Rotation in the X axis
+    FRotator DeltaRotation = FRotator::ZeroRotator;
+    float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+    //Yaw is the movement in the Z axis, it is used to
+    //turn the tank around.
+    DeltaRotation.Yaw = Value * this->TurnRate * DeltaTime;
+
+    this->AddActorLocalRotation(DeltaRotation, true);   
 }
