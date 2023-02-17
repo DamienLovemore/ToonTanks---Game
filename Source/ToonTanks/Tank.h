@@ -17,6 +17,9 @@ class TOONTANKS_API ATank : public ABasePawn
 public:	
 	ATank();
 
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 private:
 	//Keeps the object and the camera connected, separeted by a distance
 	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
@@ -24,4 +27,6 @@ private:
 	//The camera that renders the player view
 	UPROPERTY(VisibleAnywhere, Category = "Camera Control")
 	class UCameraComponent* FollowCamera;
+
+	void Move(float Value);
 };

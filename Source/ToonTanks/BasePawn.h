@@ -50,10 +50,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 private:
 	//Forward declare a variable to make header file smaller
 	UPROPERTY(VisibleAnywhere, Category = "Pawn Structure", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))	
