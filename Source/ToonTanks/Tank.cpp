@@ -67,6 +67,9 @@ void ATank::Tick(float DeltaTime)
         //-1.f draw every single frame, segments how many lines
         //is used to draw the sphere
         DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 25, 12, FColor::FromHex("#f7afba"), false, -1.f);
+
+        //Rotate the tank turret in the direction the mouse is facing
+        this->RotateTurret(HitResult.ImpactPoint);
     }
 }
 

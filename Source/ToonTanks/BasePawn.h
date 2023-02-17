@@ -39,7 +39,10 @@ public:
 
 	UPROPERTY(EditInstanceOnly)
 	int32 EditInstanceOnlyInt = 14;
-	
+
+protected:
+	void RotateTurret(FVector LookAtTarget);
+
 private:
 	//Forward declare a variable to make header file smaller
 	UPROPERTY(VisibleAnywhere, Category = "Pawn Structure", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))	
