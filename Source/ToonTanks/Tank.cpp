@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 
 ATank::ATank()
 {
@@ -20,13 +21,20 @@ ATank::ATank()
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
-    //Because it is a override
+    //Because it is a override must have
     Super::BeginPlay();
+
+    //Allows this object to register tick events
+    this->PrimaryActorTick.bCanEverTick = true;
 
     //Gets the controller system used by the player
     //to move the pawn (player char) around
     //Used casting to convert AController to APlayerController
     this->PlayerControllerRef = Cast<APlayerController>(this->GetController());
+
+    //Example of usage of draw debug sphere (Used to show
+    //where line trace is hitting for debug purposes)
+    //DrawDebugSphere(this->GetWorld(), this->GetActorLocation() + FVector(0,0,200), 100, 20, FColor::Red, true, 30);
 }
 
 //Used to bind functions to access mappings
@@ -39,6 +47,27 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     //Bind a axis mapping of that name to our function to handle
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+}
+
+void ATank::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    //Verifies if the pointer is not null
+    //(If we have a controller possesing this pawn)
+    if(this->PlayerControllerRef)
+    {
+        //Stores information about where it hit
+        FHitResult HitResult;
+        //Do a line trace check with the mouse cursor
+        this->PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+
+        //Visual representation for debugging to see where
+        //mouse is pointing
+        //-1.f draw every single frame, segments how many lines
+        //is used to draw the sphere
+        DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 25, 12, FColor::FromHex("#f7afba"), false, -1.f);
+    }
 }
 
 void ATank::Move(float Value)
