@@ -2,6 +2,7 @@
 
 
 #include "Projectile.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -11,6 +12,13 @@ AProjectile::AProjectile()
 
 	this->ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bullet"));
 	this->RootComponent = this->ProjectileMesh;
+
+	//Creates the component that handles the movement of it
+	//in the tick function
+	this->MovementHandler = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Movement Handler"));
+	//Sets the speed that this object should move
+	this->MovementHandler->InitialSpeed = 1300;
+	this->MovementHandler->MaxSpeed = 1300;
 }
 
 // Called when the game starts or when spawned
