@@ -26,6 +26,9 @@ void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//Bind the object event to the function that
+	//should respond to it
+	this->ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 
 // Called every frame
@@ -35,3 +38,13 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	//Test if hit event is being trigger
+	UE_LOG(LogTemp, Warning, TEXT("OnHit event triggered"));
+
+	//Parameters names debugging
+	UE_LOG(LogTemp, Display, TEXT("HittedComponent: %s"), *HitComp->GetName());
+	UE_LOG(LogTemp, Display, TEXT("OtherActor: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Display, TEXT("OtherComp: %s"), *OtherComp->GetName());
+}

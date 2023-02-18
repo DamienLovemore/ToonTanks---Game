@@ -29,4 +29,11 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	class UProjectileMovementComponent* MovementHandler;
+
+	//UFunction is like UPROPERTY but for functions, not
+	//variables.
+	//In this case must have because it is going to be used
+	//by a multicas delegate
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 };
