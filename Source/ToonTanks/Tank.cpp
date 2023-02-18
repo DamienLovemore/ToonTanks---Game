@@ -47,6 +47,10 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     //Bind a axis mapping of that name to our function to handle
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+    
+    //Bind this action mapping to call Fire when the Fire button is pressed
+    //(For released use IE_Released)
+    PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::Tick(float DeltaTime)
@@ -66,7 +70,7 @@ void ATank::Tick(float DeltaTime)
         //mouse is pointing
         //-1.f draw every single frame, segments how many lines
         //is used to draw the sphere
-        DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 25, 12, FColor::FromHex("#f7afba"), false, -1.f);
+        //DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 25, 12, FColor::FromHex("#f7afba"), false, -1.f);
 
         //Rotate the tank turret in the direction the mouse is facing
         this->RotateTurret(HitResult.ImpactPoint);

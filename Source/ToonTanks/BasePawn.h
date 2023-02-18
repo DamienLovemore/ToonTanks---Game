@@ -15,33 +15,34 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-	//Visible in unity editor, but not editable
-	//Allos to get and set variable in Blueprints visual code
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	int32 VisibleAnywhereInt = 12;
+	// //Visible in unity editor, but not editable
+	// //Allos to get and set variable in Blueprints visual code
+	// UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	// int32 VisibleAnywhereInt = 12;
 
-	//It is visible and editable in the Unreal Editor
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int32 EditAnywhereInt = 22;
+	// //It is visible and editable in the Unreal Editor
+	// UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	// int32 EditAnywhereInt = 22;
 
-	//Can only be visible if it is a instance
-	//(placed in the world)
-	UPROPERTY(VisibleInstanceOnly)
-	int32 VisibleInstanceOnlyInt = 11;
+	// //Can only be visible if it is a instance
+	// //(placed in the world)
+	// UPROPERTY(VisibleInstanceOnly)
+	// int32 VisibleInstanceOnlyInt = 11;
 
-	//Can only be visible in the defaults editor
-	//(Double-click BP on Content Drawer)
-	UPROPERTY(VisibleDefaultsOnly)
-	int32 VisibleDefaultsOnlyInt = 5;
+	// //Can only be visible in the defaults editor
+	// //(Double-click BP on Content Drawer)
+	// UPROPERTY(VisibleDefaultsOnly)
+	// int32 VisibleDefaultsOnlyInt = 5;
 
-	UPROPERTY(EditDefaultsOnly)
-	int32 EditDefaultsOnlyInt = 9;
+	// UPROPERTY(EditDefaultsOnly)
+	// int32 EditDefaultsOnlyInt = 9;
 
-	UPROPERTY(EditInstanceOnly)
-	int32 EditInstanceOnlyInt = 14;
+	// UPROPERTY(EditInstanceOnly)
+	// int32 EditInstanceOnlyInt = 14;
 
 protected:
 	void RotateTurret(FVector LookAtTarget);
+	void Fire();
 
 private:
 	//Forward declare a variable to make header file smaller
@@ -56,13 +57,13 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = "Projectiles", BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
 
-	//Allows Blueprint access from private variables.
-	//(Still encapsulated in the C++ side)
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
-	int32 PrivateVisibleAnywhereInt = 21;
+	// //Allows Blueprint access from private variables.
+	// //(Still encapsulated in the C++ side)
+	// UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
+	// int32 PrivateVisibleAnywhereInt = 21;
 
-	//Category is used to put variables into their own separate categories
-	//(The \ is used to escape characters)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite,  Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
-	int32 PrivateEditAnywhereInt = 21;
+	// //Category is used to put variables into their own separate categories
+	// //(The \ is used to escape characters)
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite,  Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
+	// int32 PrivateEditAnywhereInt = 21;
 };
