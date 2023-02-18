@@ -16,6 +16,22 @@
 		"directory": "D:\\Unreal\\UE_5.1\\Engine\\Source"
 	},
 	{
+		"file": "D:\\Unreal Projects\\ToonTanks\\Source\\ToonTanks\\Projectile.cpp",
+		"arguments": [
+			"D:\\Visual Studio Community 2022\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\ToonTanks\\.vscode\\compileCommands_Default\\ToonTanks.249.rsp"
+		],
+		"directory": "D:\\Unreal\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\ToonTanks\\Source\\ToonTanks\\Projectile.h",
+		"arguments": [
+			"D:\\Visual Studio Community 2022\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\ToonTanks\\.vscode\\compileCommands_Default\\ToonTanks.249.rsp"
+		],
+		"directory": "D:\\Unreal\\UE_5.1\\Engine\\Source"
+	},
+	{
 		"file": "D:\\Unreal Projects\\ToonTanks\\Source\\ToonTanks\\Tank.cpp",
 		"arguments": [
 			"D:\\Visual Studio Community 2022\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
