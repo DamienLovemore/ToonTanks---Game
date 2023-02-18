@@ -66,4 +66,9 @@ private:
 	// //(The \ is used to escape characters)
 	// UPROPERTY(EditAnywhere, BlueprintReadWrite,  Category = "20\% Cooler", meta = (AllowPrivateAccess = "true"))
 	// int32 PrivateEditAnywhereInt = 21;
+
+	//TSubclassOf is used to get the Blueprint version the C++ class.
+	//Not just spawn the C++ class that does not have meshes
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
 };

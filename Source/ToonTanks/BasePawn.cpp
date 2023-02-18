@@ -5,12 +5,13 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Projectile.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
 {
-	//Create a component of that type and with that name.
-	//(Also assings it as a child of this object)
+	//Create a component (not a actor) of that type and with that name.
+	//Can only be used in the Constructor
 	this->CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
 	//Changes the RootComponent to be the new created component
 	this->RootComponent = this->CapsuleComp;
@@ -55,6 +56,14 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 
 void ABasePawn::Fire()
 {
+	//The start point of the bullet
 	FVector ProjectileSpawnPointLocation = this->ProjectileSpawnPoint->GetComponentLocation();
-	DrawDebugSphere(this->GetWorld(), ProjectileSpawnPointLocation, 25, 12, FColor::Red, false, 3);
+	//The rotation that the bullet should have
+	//(Rotate with the turret)
+	FRotator ProjectileSpawnPointRotation = this->ProjectileSpawnPoint->GetComponentRotation();
+
+	//Visual indicator of where the bullet is
+	//being shoot from
+	//DrawDebugSphere(this->GetWorld(), ProjectileSpawnPointLocation, 25, 12, FColor::Red, false, 3);
+	this->GetWorld()->SpawnActor<AProjectile>(this->ProjectileClass, ProjectileSpawnPointLocation, ProjectileSpawnPointRotation);
 }
