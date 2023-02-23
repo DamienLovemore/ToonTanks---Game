@@ -2,7 +2,9 @@
 
 
 #include "Projectile.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "GameFramework/DamageType.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -40,11 +42,31 @@ void AProjectile::Tick(float DeltaTime)
 
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	//Test if hit event is being trigger
-	UE_LOG(LogTemp, Warning, TEXT("OnHit event triggered"));
+	// //Test if hit event is being trigger
+	// UE_LOG(LogTemp, Warning, TEXT("OnHit event triggered"));
 
-	//Parameters names debugging
-	UE_LOG(LogTemp, Display, TEXT("HittedComponent: %s"), *HitComp->GetName());
-	UE_LOG(LogTemp, Display, TEXT("OtherActor: %s"), *OtherActor->GetName());
-	UE_LOG(LogTemp, Display, TEXT("OtherComp: %s"), *OtherComp->GetName());
+	// //Parameters names debugging
+	// UE_LOG(LogTemp, Display, TEXT("HittedComponent: %s"), *HitComp->GetName());
+	// UE_LOG(LogTemp, Display, TEXT("OtherActor: %s"), *OtherActor->GetName());
+	// UE_LOG(LogTemp, Display, TEXT("OtherComp: %s"), *OtherComp->GetName());
+	
+	//If this bullet does not have a owner, exit the function
+	//(We cannot verify from where it came to apply the damage)
+	auto MyOwner = this->GetOwner();
+	if (MyOwner == nullptr) return;
+
+	//The controller (player input) of the thing that caused the hit
+	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
+	auto DamageTypeClass = UDamageType::StaticClass();
+	
+	//If there is something it collided with, and that thing is not
+	//himself, or the object that released this projectile
+	if(OtherActor && OtherActor != this && OtherActor != MyOwner)
+	{
+		//Apply the damage on the target it hitted with, with a
+		//generic type of damage
+		UGameplayStatics::ApplyDamage(OtherActor, this->Damage, MyOwnerInstigator, this, DamageTypeClass);
+		//After the bullet hitted the enemy it should disappear
+		this->Destroy();
+	}
 }

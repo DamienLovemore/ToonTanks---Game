@@ -28,12 +28,15 @@ private:
 	UStaticMeshComponent* ProjectileMesh;
 
 	UPROPERTY(VisibleAnywhere)
-	class UProjectileMovementComponent* MovementHandler;
+	class UProjectileMovementComponent *MovementHandler;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 50;
 
 	//UFunction is like UPROPERTY but for functions, not
 	//variables.
 	//In this case must have because it is going to be used
 	//by a multicas delegate
 	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	void OnHit(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult& Hi);
 };

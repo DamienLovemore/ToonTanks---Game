@@ -10,6 +10,9 @@
 // Sets default values
 ABasePawn::ABasePawn()
 {
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	this->PrimaryActorTick.bCanEverTick = true;
+
 	//Create a component (not a actor) of that type and with that name.
 	//Can only be used in the Constructor
 	this->CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
@@ -65,5 +68,10 @@ void ABasePawn::Fire()
 	//Visual indicator of where the bullet is
 	//being shoot from
 	//DrawDebugSphere(this->GetWorld(), ProjectileSpawnPointLocation, 25, 12, FColor::Red, false, 3);
-	this->GetWorld()->SpawnActor<AProjectile>(this->ProjectileClass, ProjectileSpawnPointLocation, ProjectileSpawnPointRotation);
+
+	//auto lets the editor to figure out the correct type
+	auto Projectile = this->GetWorld()->SpawnActor<AProjectile>(this->ProjectileClass, ProjectileSpawnPointLocation, ProjectileSpawnPointRotation);
+	//Makes to sure to assign this bullet to this object,
+	//so we can know later from which it came
+	Projectile->SetOwner(this);
 }
